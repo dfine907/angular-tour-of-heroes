@@ -21,6 +21,10 @@ export class HeroService {
     private messageService: MessageService
   ) {}
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   /*  ORIGINAL getHero()
   getHero(id: number): Observable<Hero> {
     // For now, assume that a hero with the specified `id` always exists.
@@ -49,6 +53,13 @@ export class HeroService {
     );
   }
 
+  /** PUT: update the hero on the server */
+updateHero(hero: Hero): Observable<any> {
+  return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+    tap(_ => this.log(`updated hero id=${hero.id}`)),
+    catchError(this.handleError<any>('updateHero'))
+  );
+}
   /**
    * Handle Http operation that failed.
    * Let the app continue.
