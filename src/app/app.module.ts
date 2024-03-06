@@ -36,3 +36,6 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+//NOTE for Angular 16:   Use npx -p @angular/cli@16 ng new project-name 
